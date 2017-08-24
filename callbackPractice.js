@@ -62,16 +62,15 @@ multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
 })
 
-
-
 // 4. Write a function called contains that checks if a name exists in an array.
 // If it does, invoke the callback with true as an argument.
 // If the name does not exist, invoke the callback with false as an argument.
 
   //Code Here
-
-
-
+function contains (namesArr, name, cb) {
+  var result = namesArr.indexOf(name) !== -1 ? true: false;
+  cb(result);
+}
 
 contains(names, 'Colt', function(result){
   if(result === true){
@@ -81,14 +80,14 @@ contains(names, 'Colt', function(result){
   }
 });
 
-
-
 // 5. Write a function called uniq that takes the names array and removes all duplicates.
 // Invoke the callback with the modified array as an argument.
 
   //Code Here
-
-
+function uniq (namesArr, cb) {
+  uniqNamesArr = namesArr.filter((val, index, arr) => arr.indexOf(val) === index);
+  cb(uniqNamesArr);
+}
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -98,20 +97,27 @@ uniq(names, function(uniqArr){
 // 6. Write a function called each that takes in an array of names. For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 
     //Code Here
-
-
+var each = (namesArr, cb) => {
+  for (var i = 0; i < namesArr.length; i++) {
+    cb(namesArr[i], i);
+  }
+}
 
 each(names, function(item, indice){
   console.log('The item in the ' + indice + ' position is ' + item)
 });
 
-
-
 // 7. Write a function called getUserById that looks at the array of user objects (users) and searches for a user by ID.
 // When the correct user object is found, invoke the callback with the user object as an argument.
 
 // Code here
-
+var getUserById = (arrUserObj, key, cb) => {
+  for (var i = 0; i < arrUserObj.length; i++) {
+    if (arrUserObj[i].id === key) {
+      cb(arrUserObj[i]);
+    }
+  }
+}
 
 
 var users = [
